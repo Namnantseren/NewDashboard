@@ -1,0 +1,40 @@
+.allDash {
+    width: 1280px;
+    /* height: 100%; */
+    margin: 50px;
+}
+
+.add-product-color {
+    background-color: #003585;
+}
+
+.navofdash {
+    width: 1280px;
+    height: 65px;
+    border-bottom: 1px solid gray;
+}
+
+.allofdash {
+    width: 100%;
+    background-color: #F5F5F5;
+}
+
+.midofdash {
+    width: 1280px;
+    height: 100%;
+    margin-top: 150px;
+    background-color: white;
+}
+
+.containerof {
+    font-size: 18px;
+}
+
+.prod-list-color {
+    background-color: #F5F5F5;
+}
+
+.product-all-color {
+    background-color: #003585;
+    width: 248px;
+}
