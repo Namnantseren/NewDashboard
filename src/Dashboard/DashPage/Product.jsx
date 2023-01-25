@@ -1,29 +1,39 @@
 import Dashboard from "../Dashside/Dashside"
 import Dashboardnav from "../Dnav/Dashboardnav"
 import ProductCard from "../productCard/ProductCard"
-import { Data } from "../../utils/Data/Data"
 import './DashStyle/DashStyle.css'
 import { useState } from "react"
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
-export default function Dashdash() {
-    const [input, setinput] = useState(Data);
+export default function Dashdash(props) {
+    const {data} = props
+    const [input, setinput] = useState();
     const [show, setShow] = useState(false);
+    const [name, setSendname] = useState()
+    const [price, setSendprice] = useState()
+    const [category, setSendcategory] = useState()
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    console.log(data, "ene bol; product data")
     function changer(e){
         if(e.target.innerText === "All") {
-            setinput(Data);
+            setinput(data);
         } else {
-           let hoh = Data.filter((cate) =>  cate.category.includes(e.target.innerText))
+           let hoh = data.filter((cate) =>  cate.category.includes(e.target.innerText))
            setinput(hoh);
         }
     }
 
+    function save() {
+        return (
+            setinput([...input, {name, price, category}])
+        )
+    }
 
-    return (
+
+    return <>{data && (
         <div>
             <Dashboardnav/>
             <div className="d-flex">
@@ -43,8 +53,25 @@ export default function Dashdash() {
                                     <Offcanvas.Title>Offcanvas</Offcanvas.Title>
                                     </Offcanvas.Header>
                                     <Offcanvas.Body>
-                                    Some text as placeholder. In real life you can have the elements you
-                                    have chosen. Like, text, images, lists, etc.
+                                    <div>
+                                        <div >
+                                            <div>
+                                                <h4>Барааны нэр</h4>
+                                                <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
+                                            </div>
+                                            <div>
+                                                <h4>Барааны үнэ ($)</h4>
+                                                <input type="number" placeholder="Барааны үнэ ($)" onChange={(e) => setSendprice(e.target.value)}/>
+                                            </div>
+                                            <div>
+                                                <h4>Category</h4>
+                                                <input type="text" placeholder="Барааны үнэ ($)" onChange={(e) => setSendcategory(e.target.value)}/>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button onClick={save}>Save</button>
+                                        </div>
+                                    </div>
                                     </Offcanvas.Body>
                                 </Offcanvas>
 
@@ -79,7 +106,7 @@ export default function Dashdash() {
                                 <p>:</p>
                             </div>
                             <div>
-                            {input.map((item, index) => (
+                            {data.map((item, index) => (
                                 <div key={index}>
                                     <ProductCard item={item}/>
                                 </div>
@@ -90,5 +117,5 @@ export default function Dashdash() {
                 </div>
             </div>
         </div>
-    )
+    )}</> 
 }
