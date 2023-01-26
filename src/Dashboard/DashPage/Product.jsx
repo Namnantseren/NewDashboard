@@ -9,7 +9,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 export default function Dashdash(props) {
     const {data} = props
-    const [input, setinput] = useState();
+    const [entred, setEntred] = useState();
     const [show, setShow] = useState(false);
     const [name, setSendname] = useState()
     const [price, setSendprice] = useState()
@@ -17,18 +17,19 @@ export default function Dashdash(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     console.log(data, "ene bol; product data")
+
     function changer(e){
         if(e.target.innerText === "All") {
-            setinput(data);
+            setEntred(data);
         } else {
            let hoh = data.filter((cate) =>  cate.category.includes(e.target.innerText))
-           setinput(hoh);
+           setEntred(hoh);
         }
     }
 
     function save() {
         return (
-            setinput([...input, {name, price, category}])
+            setEntred([...entred, {name, price, category}])
         )
     }
 
@@ -48,24 +49,45 @@ export default function Dashdash(props) {
                                     Бараа нэмэх
                                 </Button>
 
-                                <Offcanvas show={show} onHide={handleClose} placement="end">
+                                <Offcanvas show={show} onHide={handleClose} placement="end" className="off-Canvas">
                                     <Offcanvas.Header closeButton>
                                     <Offcanvas.Title>Offcanvas</Offcanvas.Title>
                                     </Offcanvas.Header>
                                     <Offcanvas.Body>
                                     <div>
-                                        <div >
-                                            <div>
-                                                <h4>Барааны нэр</h4>
-                                                <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
+                                        <div className="product-info">
+                                            <div className="d-flex flex-wrap">
+                                                <div>
+                                                    <h4>Барааны нэр</h4>
+                                                    <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
+                                                </div>
+                                                <div>
+                                                    <h4>Барааны үнэ ($)</h4>
+                                                    <input type="number" placeholder="Барааны үнэ ($)" onChange={(e) => setSendprice(e.target.value)}/>
+                                                </div>
+                                                <div>
+                                                    <h4>Үлдэгдэл</h4>
+                                                    <input type="text" placeholder="Үлдэгдэл" onChange={(e) => setSendcategory(e.target.value)}/>
+                                                </div>
+                                                <div>
+                                                    <h4>Category</h4>
+                                                    <input type="text" placeholder="Барааны үнэ ($)" onChange={(e) => setSendcategory(e.target.value)}/>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h4>Барааны үнэ ($)</h4>
-                                                <input type="number" placeholder="Барааны үнэ ($)" onChange={(e) => setSendprice(e.target.value)}/>
-                                            </div>
-                                            <div>
-                                                <h4>Category</h4>
-                                                <input type="text" placeholder="Барааны үнэ ($)" onChange={(e) => setSendcategory(e.target.value)}/>
+                                            <h2>Үзүүлэлтүүд</h2>
+                                            <div className="product-btm">
+                                                <div>
+                                                    <h4>Багтаамж</h4>
+                                                    <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
+                                                </div>
+                                                <div>
+                                                    <h4>Баталгаат хугацаа</h4>
+                                                    <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
+                                                </div>
+                                                <div>
+                                                    <h4>Тайлбар</h4>
+                                                    <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
+                                                </div>
                                             </div>
                                         </div>
                                         <div>

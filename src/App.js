@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 function App() {
   const [data, setData] = useState();
   useEffect(() => {
-      axios.get(`http://localhost:2030/users`)
+      axios.get(`http://localhost:2000/users`)
       .then((res) => setData(res.data))
   }, []);
   console.log(data, "ene bol data")
