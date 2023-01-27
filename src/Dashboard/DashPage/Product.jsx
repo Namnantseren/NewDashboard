@@ -6,6 +6,7 @@ import { useState } from "react"
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import  Modal  from "../Modal"
 
 export default function Dashdash(props) {
     const {data} = props
@@ -16,6 +17,7 @@ export default function Dashdash(props) {
     const [category, setSendcategory] = useState()
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [shower, setShower] = useState([]);
     console.log(data, "ene bol; product data")
 
     function changer(e){
@@ -74,21 +76,18 @@ export default function Dashdash(props) {
                                                     <input type="text" placeholder="Барааны үнэ ($)" onChange={(e) => setSendcategory(e.target.value)}/>
                                                 </div>
                                             </div>
-                                            <h2>Үзүүлэлтүүд</h2>
-                                            <div className="product-btm">
-                                                <div>
-                                                    <h4>Багтаамж</h4>
-                                                    <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
-                                                </div>
-                                                <div>
-                                                    <h4>Баталгаат хугацаа</h4>
-                                                    <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
-                                                </div>
-                                                <div>
-                                                    <h4>Тайлбар</h4>
-                                                    <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
-                                                </div>
+                                            <div className="">
+                                                <h2>Үзүүлэлтүүд</h2>
+                                                {shower && shower.map((unit) => {
+                                                    return (
+                                                        <div>
+                                                            <label htmlFor="">{unit[0]}</label>
+                                                            <input type="text" defaultValue={unit[1]} />
+                                                        </div>
+                                                    )
+                                                })}
                                             </div>
+                                            <Modal setShower={setShower} shower={shower}/>
                                         </div>
                                         <div>
                                             <button onClick={save}>Save</button>
