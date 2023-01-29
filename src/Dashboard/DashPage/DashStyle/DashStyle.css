@@ -51,3 +51,7 @@
 .spec {
     width: 500px;
 }
+
+.off-Canvas {
+    --bs-offcanvas-width: 600px;
+}

@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 function App() {
   const [data, setData] = useState();
   useEffect(() => {
-      axios.get(`http://localhost:2000/users`)
+      axios.get(`http://localhost:2030/users`)
       .then((res) => setData(res.data))
   }, []);
   console.log(data, "ene bol data")
@@ -22,7 +22,7 @@ function App() {
         {/* <Dashboard/> */}
         <Routes>
           <Route/>
-          <Route path='/' element={<AllDash/>}/>
+          <Route path='/Dashboard/AllDash' element={<AllDash/>}/>
           <Route path='/Dashboard/Product' element={<Product data={data}/>}/>
           <Route path='/Dashboard/Orders' element={<Orders/>}/>
           <Route path='/Dashboard/Users' element={<Users/>}/>

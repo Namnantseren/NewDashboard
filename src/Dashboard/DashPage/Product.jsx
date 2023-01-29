@@ -7,14 +7,15 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import  Modal  from "../Modal"
+import axios from "axios"
 
 export default function Dashdash(props) {
     const {data} = props
     const [entred, setEntred] = useState();
     const [show, setShow] = useState(false);
-    const [name, setSendname] = useState()
-    const [price, setSendprice] = useState()
-    const [category, setSendcategory] = useState()
+    // const [name, setSendname] = useState()
+    // const [price, setSendprice] = useState()
+    // const [category, setSendcategory] = useState()
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [shower, setShower] = useState([]);
@@ -29,10 +30,14 @@ export default function Dashdash(props) {
         }
     }
 
-    function save() {
-        return (
-            setEntred([...entred, {name, price, category}])
-        )
+    function save(e) {
+        e.preventdefault()
+        axios.post("http://localhost:2030/users", {
+            name: e.target.setSendname.value,
+            price: e.target.setSendprice.value,
+            stock: e.target.setSendmoney.value,
+            category: e.target.setSendcategory.value,
+        })
     }
 
 
@@ -58,22 +63,25 @@ export default function Dashdash(props) {
                                     <Offcanvas.Body>
                                     <div>
                                         <div className="product-info">
-                                            <div className="d-flex flex-wrap">
+                                            <div className="d-flex flex-wrap" onSubmit={save}>
                                                 <div>
                                                     <h4>Барааны нэр</h4>
-                                                    <input type="text" placeholder="Барааны нэр" onChange={(e) => setSendname(e.target.innerText)}/>
+                                                    <input type="text" placeholder="Барааны нэр" name="setSendname"/>
                                                 </div>
                                                 <div>
                                                     <h4>Барааны үнэ ($)</h4>
-                                                    <input type="number" placeholder="Барааны үнэ ($)" onChange={(e) => setSendprice(e.target.value)}/>
+                                                    <input type="number" placeholder="Барааны үнэ ($)" name="setSendprice"/>
                                                 </div>
                                                 <div>
                                                     <h4>Үлдэгдэл</h4>
-                                                    <input type="text" placeholder="Үлдэгдэл" onChange={(e) => setSendcategory(e.target.value)}/>
+                                                    <input type="text" placeholder="Үлдэгдэл" name="setSendmoney"/>
                                                 </div>
                                                 <div>
                                                     <h4>Category</h4>
-                                                    <input type="text" placeholder="Барааны үнэ ($)" onChange={(e) => setSendcategory(e.target.value)}/>
+                                                    <input type="text" placeholder="Барааны үнэ ($)" name="setSendcategory"/>
+                                                </div>
+                                                <div>
+                                                    <button type="submit">Save</button>
                                                 </div>
                                             </div>
                                             <div className="">
@@ -89,9 +97,7 @@ export default function Dashdash(props) {
                                             </div>
                                             <Modal setShower={setShower} shower={shower}/>
                                         </div>
-                                        <div>
-                                            <button onClick={save}>Save</button>
-                                        </div>
+                                        
                                     </div>
                                     </Offcanvas.Body>
                                 </Offcanvas>
