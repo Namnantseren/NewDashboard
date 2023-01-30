@@ -31,15 +31,18 @@ export default function Dashdash(props) {
     }
 
     function save(e) {
-        e.preventdefault()
+        e.preventDefault();
         axios.post("http://localhost:2030/users", {
+            image: e.target.image.value,
             name: e.target.setSendname.value,
             price: e.target.setSendprice.value,
             stock: e.target.setSendmoney.value,
+            stock: e.target.setSale.value,
             category: e.target.setSendcategory.value,
         })
+        
+        console.log(e.target.setSendname.value)
     }
-
 
     return <>{data && (
         <div>
@@ -63,7 +66,11 @@ export default function Dashdash(props) {
                                     <Offcanvas.Body>
                                     <div>
                                         <div className="product-info">
-                                            <div className="d-flex flex-wrap" onSubmit={save}>
+                                            <form className="d-flex flex-wrap" onSubmit={save}>
+                                                <div>
+                                                    <h4>Барааны зураг</h4>
+                                                    <input type="text" placeholder="Барааны нэр" name="image"/>
+                                                </div>
                                                 <div>
                                                     <h4>Барааны нэр</h4>
                                                     <input type="text" placeholder="Барааны нэр" name="setSendname"/>
@@ -77,18 +84,30 @@ export default function Dashdash(props) {
                                                     <input type="text" placeholder="Үлдэгдэл" name="setSendmoney"/>
                                                 </div>
                                                 <div>
+                                                    <h4>Хямдрал</h4>
+                                                    <input type="text" placeholder="Үлдэгдэл" name="setSale"/>
+                                                </div>
+                                                {/* <div>
                                                     <h4>Category</h4>
                                                     <input type="text" placeholder="Барааны үнэ ($)" name="setSendcategory"/>
-                                                </div>
+                                                </div> */}
+                                                <select id="category" name="setSendcategory">
+                                                    <option value="appliances">appliances</option>
+                                                    <option value="computers & tablets">
+                                                        computers & tablets
+                                                    </option>
+                                                    <option value="gaming console">gaming console</option>
+                                                    <option value="telescope">telescope</option>
+                                                </select>
                                                 <div>
                                                     <button type="submit">Save</button>
                                                 </div>
-                                            </div>
+                                            </form>
                                             <div className="">
                                                 <h2>Үзүүлэлтүүд</h2>
-                                                {shower && shower.map((unit) => {
+                                                {shower && shower.map((unit, index) => {
                                                     return (
-                                                        <div>
+                                                        <div key={index}>
                                                             <label htmlFor="">{unit[0]}</label>
                                                             <input type="text" defaultValue={unit[1]} />
                                                         </div>

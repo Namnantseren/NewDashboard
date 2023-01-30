@@ -2,12 +2,19 @@ import './productStyle/product.css'
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
 
 
 export default function Card(prop) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    function remover(id) {
+        axios.delete(`http://localhost:2030/users/${id}`)
+        console.log(id)
+        window.location.reload()
+    }
     return(
         <div>
             <div className="d-flex justify-content-evenly">
@@ -21,10 +28,10 @@ export default function Card(prop) {
                     <p>${prop.item.price}</p>
                 </div>
                 <div className='product-same-size'>
-                    <p>15</p>
+                    <p>{prop.item.stock}</p>
                 </div >
                 <div className='product-same-size'>
-                    <p>0</p>
+                    <p>{prop.item.sale}%</p>
                 </div>
                 <div className='product-same-size'>
                     <p>{prop.item.category}</p>
@@ -42,10 +49,11 @@ export default function Card(prop) {
                     
                     <div className='d-flex flex-wrap'>
                         <Modal.Body>
-                        Та ‘..............’ устгахдаа итгэлтэй байна уу?
-                        <Button variant="primary">
+                        Та {prop.item.name}-г устгахдаа итгэлтэй байна уу?
+                        <Button variant="primary"  onClick={() => remover(prop.item.id)}>
                             Тийм
                         </Button>
+                        
                         <Button variant="secondary" onClick={handleClose}>Үгүй</Button>
                         </Modal.Body>
                     </div>

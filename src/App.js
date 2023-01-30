@@ -22,6 +22,7 @@ function App() {
         {/* <Dashboard/> */}
         <Routes>
           <Route/>
+          <Route path='/' element={<AllDash/>}/>
           <Route path='/Dashboard/AllDash' element={<AllDash/>}/>
           <Route path='/Dashboard/Product' element={<Product data={data}/>}/>
           <Route path='/Dashboard/Orders' element={<Orders/>}/>
