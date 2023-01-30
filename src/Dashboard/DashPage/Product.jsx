@@ -42,6 +42,7 @@ export default function Dashdash(props) {
         })
         
         console.log(e.target.setSendname.value)
+
     }
 
     return <>{data && (
