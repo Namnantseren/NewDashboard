@@ -55,3 +55,8 @@
 .off-Canvas {
     --bs-offcanvas-width: 600px;
 }
+
+#category {
+    height: 35px;
+    margin-top: 34px;
+}

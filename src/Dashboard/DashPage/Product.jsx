@@ -37,12 +37,10 @@ export default function Dashdash(props) {
             name: e.target.setSendname.value,
             price: e.target.setSendprice.value,
             stock: e.target.setSendmoney.value,
-            stock: e.target.setSale.value,
+            sale: e.target.setSale.value,
             category: e.target.setSendcategory.value,
         })
-        
-        console.log(e.target.setSendname.value)
-
+        window.location.reload()
     }
 
     return <>{data && (
@@ -68,38 +66,42 @@ export default function Dashdash(props) {
                                     <div>
                                         <div className="product-info">
                                             <form className="d-flex flex-wrap" onSubmit={save}>
-                                                <div>
-                                                    <h4>Барааны зураг</h4>
-                                                    <input type="text" placeholder="Барааны нэр" name="image"/>
+                                                <div className="d-flex flex-wrap">
+                                                    <div>
+                                                        <h4>Барааны зураг</h4>
+                                                        <input type="text" placeholder="Барааны нэр" name="image"/>
+                                                    </div>
+                                                    <div>
+                                                        <h4>Барааны нэр</h4>
+                                                        <input type="text" placeholder="Барааны нэр" name="setSendname"/>
+                                                    </div>
+                                                    <div>
+                                                        <h4>Барааны үнэ ($)</h4>
+                                                        <input type="number" placeholder="Барааны үнэ ($)" name="setSendprice"/>
+                                                    </div>
+                                                    <div>
+                                                        <h4>Үлдэгдэл</h4>
+                                                        <input type="text" placeholder="Үлдэгдэл" name="setSendmoney"/>
+                                                    </div>
+                                                    <div>
+                                                        <h4>Хямдрал</h4>
+                                                        <input type="text" placeholder="Sale" name="setSale"/>
+                                                    </div>
+                                                    {/* <div>
+                                                        <h4>Category</h4>
+                                                        <input type="text" placeholder="Барааны үнэ ($)" name="setSendcategory"/>
+                                                    </div> */}
+                                                    <select id="category" name="setSendcategory">
+                                                        <h4>Category</h4>
+                                                        <option value="appliances">appliances</option>
+                                                        <option value="computers & tablets">
+                                                            computers & tablets
+                                                        </option>
+                                                        <option value="gaming console">gaming console</option>
+                                                        <option value="telescope">telescope</option>
+                                                        <option value="pad">pad</option>
+                                                    </select>
                                                 </div>
-                                                <div>
-                                                    <h4>Барааны нэр</h4>
-                                                    <input type="text" placeholder="Барааны нэр" name="setSendname"/>
-                                                </div>
-                                                <div>
-                                                    <h4>Барааны үнэ ($)</h4>
-                                                    <input type="number" placeholder="Барааны үнэ ($)" name="setSendprice"/>
-                                                </div>
-                                                <div>
-                                                    <h4>Үлдэгдэл</h4>
-                                                    <input type="text" placeholder="Үлдэгдэл" name="setSendmoney"/>
-                                                </div>
-                                                <div>
-                                                    <h4>Хямдрал</h4>
-                                                    <input type="text" placeholder="Үлдэгдэл" name="setSale"/>
-                                                </div>
-                                                {/* <div>
-                                                    <h4>Category</h4>
-                                                    <input type="text" placeholder="Барааны үнэ ($)" name="setSendcategory"/>
-                                                </div> */}
-                                                <select id="category" name="setSendcategory">
-                                                    <option value="appliances">appliances</option>
-                                                    <option value="computers & tablets">
-                                                        computers & tablets
-                                                    </option>
-                                                    <option value="gaming console">gaming console</option>
-                                                    <option value="telescope">telescope</option>
-                                                </select>
                                                 <div>
                                                     <button type="submit">Save</button>
                                                 </div>

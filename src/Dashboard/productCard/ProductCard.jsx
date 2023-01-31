@@ -15,6 +15,10 @@ export default function Card(prop) {
         console.log(id)
         window.location.reload()
     }
+    function glitch() {
+        window.location.reload()
+    }
+    // window.location.reload()
     return(
         <div>
             <div className="d-flex justify-content-evenly">
@@ -36,6 +40,10 @@ export default function Card(prop) {
                 <div className='product-same-size'>
                     <p>{prop.item.category}</p>
                 </div>
+
+                <button onClick={glitch}>
+                    Refresher
+                </button>
                 <Button variant="" onClick={handleShow}>
                     :
                 </Button>
