@@ -19,7 +19,7 @@ export default function Dashdash(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [shower, setShower] = useState([]);
-    console.log(data, "ene bol; product data")
+    console.log(data, "ene bol product data")
 
     function changer(e){
         if(e.target.innerText === "All") {
@@ -157,7 +157,7 @@ export default function Dashdash(props) {
                             <div>
                             {data.map((item, index) => (
                                 <div key={index}>
-                                    <ProductCard item={item}/>
+                                    <ProductCard item={item} />
                                 </div>
                             ))}
                             </div>

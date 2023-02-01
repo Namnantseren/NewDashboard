@@ -1,78 +1,85 @@
-import './productStyle/product.css'
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
-
+import "./productStyle/product.css";
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import axios from "axios";
+import Dropdown from 'react-bootstrap/Dropdown';
+import ProductCanvas from '../productCard/ProductCanvas'
 
 export default function Card(prop) {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const {item} = prop
+  // console.log("ene yg yu we", item.image)
 
-    function remover(id) {
-        axios.delete(`http://localhost:2030/users/${id}`)
-        console.log(id)
-        window.location.reload()
-    }
-    function glitch() {
-        window.location.reload()
-    }
-    // window.location.reload()
-    return(
-        <div>
-            <div className="d-flex justify-content-evenly">
-                <div className="product-image product-same-size">
-                    <img src={prop.item.image} alt="" />
-                </div>
-                <div className='product-same-size'>
-                    <p>{prop.item.name}</p>
-                </div>
-                <div className='product-same-size'>
-                    <p>${prop.item.price}</p>
-                </div>
-                <div className='product-same-size'>
-                    <p>{prop.item.stock}</p>
-                </div >
-                <div className='product-same-size'>
-                    <p>{prop.item.sale}%</p>
-                </div>
-                <div className='product-same-size'>
-                    <p>{prop.item.category}</p>
-                </div>
+  function remover(id) {
+    axios.delete(`http://localhost:2030/users/${id}`);
+    console.log(id);
+    window.location.reload();
+  }
+  // window.location.reload()
+  return (
+    <div>
+      <div className="d-flex justify-content-evenly">
+        <div className="product-image product-same-size">
+          <img src={item.image} alt="" />
+        </div>
+        <div className="product-same-size">
+          <p>{item.name}</p>
+        </div>
+        <div className="product-same-size">
+          <p>${item.price}</p>
+        </div>
+        <div className="product-same-size">
+          <p>{item.stock}</p>
+        </div>
+        <div className="product-same-size">
+          <p>{item.sale}%</p>
+        </div>
+        <div className="product-same-size">
+          <p>{item.category}</p>
+        </div>
 
-                <button onClick={glitch}>
-                    Refresher
-                </button>
-                <Button variant="" onClick={handleShow}>
-                    :
-                </Button>
+        <Dropdown>
+          <Dropdown.Toggle
+            id="dropdown-basic"
+            className="mt-4"
+            variant="empty"
+          >
+            :
+          </Dropdown.Toggle>
 
-                <Modal
-                    show={show}
-                    onHide={handleClose}
-                    backdrop="static"
-                    keyboard={false}
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">
+              <ProductCanvas data={item}/>
+            </Dropdown.Item>
+            <Dropdown.Item href="#/action-2">
+            <Button variant="danger" onClick={handleShow}>
+                Delete
+            </Button>
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
                 >
-                    
-                    <div className='d-flex flex-wrap'>
-                        <Modal.Body>
-                        Та {prop.item.name}-г устгахдаа итгэлтэй байна уу?
-                        <Button variant="primary"  onClick={() => remover(prop.item.id)}>
-                            Тийм
-                        </Button>
-                        
-                        <Button variant="secondary" onClick={handleClose}>Үгүй</Button>
-                        </Modal.Body>
-                    </div>
-                    {/* <Modal.Footer>
-                    <Button variant="primary" className=''>
+                <div className="d-flex flex-wrap">
+                    <Modal.Body>
+                    Та {item.name}-г устгахдаа итгэлтэй байна уу?
+                    <Button variant="primary" onClick={() => remover(item.id)}>
                         Тийм
                     </Button>
-                    <Button variant="secondary" onClick={handleClose}>Үгүй</Button>
-                    </Modal.Footer> */}
-                </Modal>
-            </div>
-        </div>
-    )
+                    <Button variant="secondary" onClick={handleClose}>
+                        Үгүй
+                    </Button>
+                    </Modal.Body>
+                </div>
+             </Modal>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+    </div>
+  );
 }

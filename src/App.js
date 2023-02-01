@@ -6,6 +6,7 @@ import Orders from './Dashboard/DashPage/Orders'
 import Users from './Dashboard/DashPage/Users'
 import Moderator from './Dashboard/DashPage/Moderator'
 import Settings from './Dashboard/DashPage/Settings'
+import ProductCanvas from "./Dashboard/productCard/ProductCanvas"
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 // import Dashboard from './main/Dashboard'
@@ -29,6 +30,8 @@ function App() {
           <Route path='/Dashboard/Users' element={<Users/>}/>
           <Route path='/Dashboard/Moderator' element={<Moderator/>}/>
           <Route path='/Dashboard/Settings' element={<Settings/>}/>
+          <Route element={<ProductCanvas data={data}/>}/>
+
         </Routes>
     </div>
   );
