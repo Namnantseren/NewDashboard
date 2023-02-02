@@ -24,7 +24,7 @@ export default function Canvas(props) {
       category: e.target.setSendcategory.value,
     };
     axios.put(`http://localhost:2030/users/${data.id}`, {productObject});
-    console.log("data:", data.id)
+    console.log("datagiin ID:", data.id)
     // window.location.reload();
     console.log("Yvuulj bgashu:", productObject);
   }
@@ -68,7 +68,7 @@ export default function Canvas(props) {
                       type="number"
                       placeholder="Барааны үнэ ($)"
                       name="setSendprice"
-                      defaultValue={data ? data.price: ""}
+                      defaultValue={data && data.price}
                     />
                   </div>
                   <div>

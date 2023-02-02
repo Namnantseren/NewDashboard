@@ -11,12 +11,12 @@ export default function Card(prop) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const {item} = prop
-  // console.log("ene yg yu we", item.image)
+  // console.log("Item iiin data:", item)
 
-  function remover(id) {
-    axios.delete(`http://localhost:2030/users/${id}`);
-    console.log(id);
-    window.location.reload();
+  function remover() {
+    axios.delete(`http://localhost:2030/users/${item.id}`);
+    console.log("itemiin ID:",item.id);
+    // window.location.reload();
   }
   // window.location.reload()
   return (

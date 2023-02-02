@@ -32,6 +32,14 @@ export default function Dashdash(props) {
 
     function save(e) {
         e.preventDefault();
+        // let postObj = {
+        //     image: e.target.image.value,
+        //     name: e.target.setSendname.value,
+        //     price: e.target.setSendprice.value,
+        //     stock: e.target.setSendmoney.value,
+        //     sale: e.target.setSale.value,
+        //     category: e.target.setSendcategory.value,
+        // }
         axios.post("http://localhost:2030/users", {
             image: e.target.image.value,
             name: e.target.setSendname.value,
@@ -40,6 +48,7 @@ export default function Dashdash(props) {
             sale: e.target.setSale.value,
             category: e.target.setSendcategory.value,
         })
+        // console.log("postObj shuu:",postObj)
         window.location.reload()
     }
 
