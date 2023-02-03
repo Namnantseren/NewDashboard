@@ -3,6 +3,7 @@ import Modal from "../Modal";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
+import { uuidv4 } from 'react-uuid';
 
 export default function Canvas(props) {
   const [show, setShow] = useState(false);
@@ -10,23 +11,23 @@ export default function Canvas(props) {
   const handleShow = () => setShow(true);
   const [shower, setShower] = useState([]);
   const { data } = props;
-  console.log("datashuuu!!!!:", data);
   
   
   function save(e) {
     e.preventDefault();
-    let productObject = {
+    
+    axios.put(`http://localhost:2030/users/${data.id}`, {
       image: e.target.image.value,
       name: e.target.setSendname.value,
       price: e.target.setSendprice.value,
       stock: e.target.setSendmoney.value,
       sale: e.target.setSale.value,
       category: e.target.setSendcategory.value,
-    };
-    axios.put(`http://localhost:2030/users/${data.id}`, {productObject});
-    console.log("datagiin ID:", data.id)
-    // window.location.reload();
-    console.log("Yvuulj bgashu:", productObject);
+      id: data.id
+    });
+    
+    console.log("datashuuu ldhaldfas !!!!:", data.id);
+    console.log( e.target.setSendcategory.value,)
   }
   console.log("Yvuulj bgashu:", save);
   return (
