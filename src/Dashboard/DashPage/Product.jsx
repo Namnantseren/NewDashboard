@@ -10,7 +10,7 @@ import  Modal  from "../Modal"
 import axios from "axios"
 
 export default function Dashdash(props) {
-    const {data} = props
+    const {data ,setWorker, worker} = props
     const [entred, setEntred] = useState();
     const [show, setShow] = useState(false);
     // const [name, setSendname] = useState()
@@ -41,7 +41,8 @@ export default function Dashdash(props) {
             category: e.target.setSendcategory.value,
         })
         console.log("postObj shuu:",e.target.setSendname.value)
-        window.location.reload()
+        // window.location.reload()
+        setWorker(!worker)
     }
 
     return <>{data && (
@@ -70,7 +71,7 @@ export default function Dashdash(props) {
                                                 <div className="d-flex flex-wrap">
                                                     <div>
                                                         <h4>Барааны зураг</h4>
-                                                        <input type="text" placeholder="Барааны нэр" name="image"/>
+                                                        <input type="text" placeholder="Барааны зураг" name="image"/>
                                                     </div>
                                                     <div>
                                                         <h4>Барааны нэр</h4>
@@ -158,7 +159,7 @@ export default function Dashdash(props) {
                             <div>
                             {data.map((item, index) => (
                                 <div key={index}>
-                                    <ProductCard item={item} />
+                                    <ProductCard item={item} worker={worker} setWorker={setWorker}/>
                                 </div>
                             ))}
                             </div>

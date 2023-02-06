@@ -10,15 +10,16 @@ export default function Card(prop) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const {item} = prop
+  const {item, worker, setWorker} = prop
+  // const [refresher, setRefresher] = useState(true);
   // console.log("Item iiin data:", item)
 
-  function remover() {
-    axios.delete(`http://localhost:2030/users/${item.id}`);
-    console.log("itemiin ID:",item.id);
-    // window.location.reload();
+  function remover(e) {
+    // e.preventDefault()
+    axios.delete(`http://localhost:2030/users/${item.id}`)
+    setWorker(!worker);
   }
-  // window.location.reload()
+
   return (
     <div>
       <div className="d-flex justify-content-evenly">
@@ -67,7 +68,7 @@ export default function Card(prop) {
                 <div className="d-flex flex-wrap">
                     <Modal.Body>
                     Та {item.name}-г устгахдаа итгэлтэй байна уу?
-                    <Button variant="primary" onClick={() => remover(item.id)}>
+                    <Button variant="primary" onClick={() => (remover(item.id), handleClose())} >
                         Тийм
                     </Button>
                     <Button variant="secondary" onClick={handleClose}>

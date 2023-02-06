@@ -3,7 +3,7 @@ import Modal from "../Modal";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { uuidv4 } from 'react-uuid';
+// import { uuidv4 } from 'react-uuid';
 
 export default function Canvas(props) {
   const [show, setShow] = useState(false);
@@ -11,7 +11,6 @@ export default function Canvas(props) {
   const handleShow = () => setShow(true);
   const [shower, setShower] = useState([]);
   const { data } = props;
-  
   
   function save(e) {
     e.preventDefault();
