@@ -1,16 +1,19 @@
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Modal from "../Modal";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 // import { uuidv4 } from 'react-uuid';
+import { Productcontext } from "../../App";
 
 export default function Canvas(props) {
+  const {data, setData} = createContext(Productcontext);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [shower, setShower] = useState([]);
-  const { data } = props;
+  // const { data } = props;
+  console.log("PUt data:",data)
   
   function save(e) {
     e.preventDefault();
@@ -22,7 +25,6 @@ export default function Canvas(props) {
       stock: e.target.setSendmoney.value,
       sale: e.target.setSale.value,
       category: e.target.setSendcategory.value,
-      id: data.id
     });
     
     console.log("datashuuu ldhaldfas !!!!:", data.id);

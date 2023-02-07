@@ -2,15 +2,17 @@ import Dashboard from "../Dashside/Dashside"
 import Dashboardnav from "../Dnav/Dashboardnav"
 import ProductCard from "../productCard/ProductCard"
 import './DashStyle/DashStyle.css'
-import { useState } from "react"
+import { createContext, useContext, useState } from "react"
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import  Modal  from "../Modal"
 import axios from "axios"
+import { Productcontext } from "../../App"
 
 export default function Dashdash(props) {
-    const {data ,setWorker, worker} = props
+    const {data} = useContext(Productcontext) 
+    const {setWorker, worker} = props
     const [entred, setEntred] = useState();
     const [show, setShow] = useState(false);
     // const [name, setSendname] = useState()
