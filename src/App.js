@@ -13,6 +13,7 @@ export const Productcontext = createContext();
 
 function App() {
   const [data, setData] = useState();
+  const [register, setRegister] = useState();
   const [worker, setWorker] = useState(true);
   const [useContext, setUseContext] = useState();
 
@@ -20,18 +21,23 @@ function App() {
       axios.get(`http://localhost:2030/users`)
       .then((res) => setData(res.data))
   }, [worker]);
-  console.log(data, "ene bol data")
+  console.log("First Data :",data);
+  
+  useEffect(() => {
+    axios.get(`http://localhost:2030/registerUser`).then((res) => setRegister(res.data))
+  }, [worker])
+  console.log("Register Data 1 :", register)
   return (
     <div className="App">
       {/* <button onClick={()=> setWorker(!worker)}>reload</button> */}
-        <Productcontext.Provider value={{data, setData}}>
+        <Productcontext.Provider value={{data, setData, register, setRegister}}>
           <Routes>
             <Route/>
             <Route path='/' element={<AllDash/>}/>
             <Route path='/Dashboard/AllDash' element={<AllDash/>}/>
-            <Route path='/Dashboard/Product' element={<Product setWorker={setWorker} worker={worker} data={data}/>}/>
+            <Route path='/Dashboard/Product' element={<Product setWorker={setWorker} worker={worker}/>}/>
             <Route path='/Dashboard/Orders' element={<Orders/>}/>
-            <Route path='/Dashboard/Users' element={<Users/>}/>
+            <Route path='/Dashboard/Users' element={<Users setWorker={setWorker} worker={worker}/>}/>
             <Route path='/Dashboard/Moderator' element={<Moderator/>}/>
             <Route path='/Dashboard/Settings' element={<Settings/>}/>
             <Route element={<ProductCanvas/>}/>

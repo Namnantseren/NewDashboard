@@ -159,11 +159,11 @@ export default function Dashdash(props) {
                                 <p>:</p>
                             </div>
                             <div>
-                            {data.map((item, index) => (
-                                <div key={index}>
-                                    <ProductCard item={item} worker={worker} setWorker={setWorker}/>
-                                </div>
-                            ))}
+                                {data.map((item, index) => (
+                                    <div key={index}>
+                                        <ProductCard item={item} worker={worker} setWorker={setWorker}/>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
