@@ -34,7 +34,7 @@ export default function Dashdash(props) {
 
     function save(e) {
         e.preventDefault();
-        axios.post("http://localhost:2030/users", {
+        axios.post("http://localhost:2031/products", {
             image: e.target.image.value,
             name: e.target.setSendname.value,
             price: e.target.setSendprice.value,
@@ -45,6 +45,11 @@ export default function Dashdash(props) {
         console.log("postObj shuu:",e.target.setSendname.value)
         // window.location.reload()
         setWorker(!worker)
+    }
+
+    function changeHandler() {
+        const data = new FormData();
+        data.append("file", e.target.files[0]);
     }
 
     return <>{data && (
@@ -73,7 +78,8 @@ export default function Dashdash(props) {
                                                 <div className="d-flex flex-wrap">
                                                     <div>
                                                         <h4>Барааны зураг</h4>
-                                                        <input type="text" placeholder="Барааны зураг" name="image"/>
+                                                        <input type="file" placeholder="Барааны зураг" name="image" onChange={changeHandler}/>
+            
                                                     </div>
                                                     <div>
                                                         <h4>Барааны нэр</h4>

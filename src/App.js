@@ -18,7 +18,7 @@ function App() {
   const [useContext, setUseContext] = useState();
 
   useEffect(() => { 
-      axios.get(`http://localhost:2030/users`)
+      axios.get(`http://localhost:2031/products `)
       .then((res) => setData(res.data))
   }, [worker]);
   console.log("First Data :",data);
