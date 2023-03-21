@@ -21,12 +21,12 @@ function App() {
       axios.get(`http://localhost:2031/products `)
       .then((res) => setData(res.data))
   }, [worker]);
-  console.log("First Data :",data);
+  // console.log("First Data :",data);
   
   useEffect(() => {
     axios.get(`http://localhost:2030/registerUser`).then((res) => setRegister(res.data))
   }, [worker])
-  console.log("Register Data 1 :", register)
+  // console.log("Register Data 1 :", register)
   return (
     <div className="App">
       {/* <button onClick={()=> setWorker(!worker)}>reload</button> */}

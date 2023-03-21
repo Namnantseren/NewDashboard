@@ -21,7 +21,6 @@ export default function Dashdash(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [shower, setShower] = useState([]);
-    console.log(data, "ene bol product data")
 
     function changer(e){
         if(e.target.innerText === "All") {
@@ -34,23 +33,30 @@ export default function Dashdash(props) {
 
     function save(e) {
         e.preventDefault();
-        axios.post("http://localhost:2031/products", {
-            image: e.target.image.value,
+        let object = {
             name: e.target.setSendname.value,
             price: e.target.setSendprice.value,
             stock: e.target.setSendmoney.value,
             sale: e.target.setSale.value,
             category: e.target.setSendcategory.value,
-        })
-        console.log("postObj shuu:",e.target.setSendname.value)
-        // window.location.reload()
+        }
+        
+        const data = new FormData();
+        data.append("file", e.target.image.files[0]);
+        data.append("object", JSON.stringify(object));
+        
+        axios.post("http://localhost:2031/products", data).then((res) => console.log(res))
         setWorker(!worker)
     }
 
-    function changeHandler() {
-        const data = new FormData();
-        data.append("file", e.target.files[0]);
-    }
+    // function changeHandler(e) {
+    //     axios.post(`http://localhost:2031/file`, {
+    //         image: e.target.image.value,
+    //     })
+    //     const data = new FormData();
+    //     data.append("file", e.target.image.files[0]);
+    //     console.log('image: ', e.target.image.files[0]);
+    // }
 
     return <>{data && (
         <div>
@@ -78,8 +84,7 @@ export default function Dashdash(props) {
                                                 <div className="d-flex flex-wrap">
                                                     <div>
                                                         <h4>Барааны зураг</h4>
-                                                        <input type="file" placeholder="Барааны зураг" name="image" onChange={changeHandler}/>
-            
+                                                        <input type="file" placeholder="Барааны зураг" name="image" />
                                                     </div>
                                                     <div>
                                                         <h4>Барааны нэр</h4>
