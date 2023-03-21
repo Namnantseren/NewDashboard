@@ -16,7 +16,7 @@ export default function Card(prop) {
 
   function remover(e) {
     // e.preventDefault()
-    axios.delete(`http://localhost:2030/users/${item.id}`)
+    axios.delete(`http://localhost:2031/products/${item.id}`)
     setWorker(!worker);
   }
 

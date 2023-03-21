@@ -48,16 +48,7 @@ export default function Dashdash(props) {
         axios.post("http://localhost:2031/products", data).then((res) => console.log(res))
         setWorker(!worker)
     }
-
-    // function changeHandler(e) {
-    //     axios.post(`http://localhost:2031/file`, {
-    //         image: e.target.image.value,
-    //     })
-    //     const data = new FormData();
-    //     data.append("file", e.target.image.files[0]);
-    //     console.log('image: ', e.target.image.files[0]);
-    // }
-
+    
     return <>{data && (
         <div>
             <Dashboardnav/>
@@ -91,7 +82,7 @@ export default function Dashdash(props) {
                                                         <input type="text" placeholder="Барааны нэр" name="setSendname"/>
                                                     </div>
                                                     <div>
-                                                        <h4>Барааны үнэ ($)</h4>
+                                                        <h4>Барааны үнэ $</h4>
                                                         <input type="number" placeholder="Барааны үнэ ($)" name="setSendprice"/>
                                                     </div>
                                                     <div>
@@ -107,7 +98,6 @@ export default function Dashdash(props) {
                                                         <input type="text" placeholder="Барааны үнэ ($)" name="setSendcategory"/>
                                                     </div> */}
                                                     <select id="category" name="setSendcategory">
-                                                        <h4>Category</h4>
                                                         <option value="appliances">appliances</option>
                                                         <option value="computers & tablets">
                                                             computers & tablets
